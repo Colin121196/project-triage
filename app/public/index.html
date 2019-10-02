@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<!-- Client's browser processes HTML, CSS, JS, and received JSON files -->
+<!-- Our web server is Apache and it receives HTTP requests from client and responds with HTTP responses -->
+<!-- Our application server is on the PHP/ZEND engine -->
+<!-- Our database server is MySQL and it ilves on the AWS cloud -->
+<!-- So this is a 4 tier architecture or 3 tier (cos web and app server are on 1 machine) -->
+<!-- Docker is a virtual machine with a common OS base underneath, so you only worry about the files that are different -->
+<!-- Docker runs the application and web server as one image -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -92,6 +99,7 @@
         </div>
 
         <div id="patientTriageApp">
+          <noscript>This page REQUIRES Javascript!</noscript>
           <form @submit.prevent="handleSubmit">
             <div class="row">
               <div class="form-group col-md-6">
