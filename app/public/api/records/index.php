@@ -4,8 +4,17 @@
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query Prepare is an included database library
-$stmt = $db->prepare('SELECT * FROM Patient');
-$stmt->execute(); //Runs the query, now has access to all the data that is returned
+if (isset($_GET['guid'])) {
+  $stmt = $db->prepare(
+    'SELECT * FROM Patient
+    WHERE patientGuid = ?'
+  );
+  $stmt->execute([$_GET['guid']]);
+} else{
+  $stmt = $db->prepare('SELECT * FROM Patient');
+  $stmt->execute();
+}
+ //Runs the query, now has access to all the data that is returned
 $patients = $stmt->fetchAll();  //Fetch results of the query
 
 // patientGuid VARCHAR(64) PRIMARY KEY,
