@@ -1,23 +1,15 @@
 <?php
 
-<<<<<<< HEAD
 // Step 1: Get a datase connection from our help class, db is now a connection object
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query Prepare is an included database library
-=======
-// Step 1: Get a datase connection from our help class
-$db = DbConnection::getConnection();
-
-// Step 2: Create & run the query
->>>>>>> upstream/red-10-14
 if (isset($_GET['guid'])) {
   $stmt = $db->prepare(
     'SELECT * FROM Patient
     WHERE patientGuid = ?'
   );
   $stmt->execute([$_GET['guid']]);
-<<<<<<< HEAD
 } else{
   $stmt = $db->prepare('SELECT * FROM Patient');
   $stmt->execute();
@@ -33,17 +25,6 @@ $patients = $stmt->fetchAll();  //Fetch results of the query
 
 // Step 3: Convert to JSON
 $json = json_encode($patients, JSON_PRETTY_PRINT); //Take entire thing and changes it to JSON. Pretty Print is an option to print that makes it human legible
-=======
-} else {
-  $stmt = $db->prepare('SELECT * FROM Patient');
-  $stmt->execute();
-}
-
-$patients = $stmt->fetchAll();
-
-// Step 3: Convert to JSON
-$json = json_encode($patients, JSON_PRETTY_PRINT);
->>>>>>> upstream/red-10-14
 
 // Step 4: Output
 header('Content-Type: application/json');
