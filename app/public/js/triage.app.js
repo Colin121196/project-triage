@@ -5,6 +5,7 @@ var patientTriageApp = new Vue({
   },
   methods: {
     handleSubmit() {
+<<<<<<< HEAD
 
        // TODO:
        fetch('api/waiting/post.php', {
@@ -22,6 +23,23 @@ var patientTriageApp = new Vue({
        }) //After done posting, what do you want. Get the entire triage queue back. Triage is a priority queue
 
        this.handleReset();
+=======
+      fetch('api/waiting/post.php', {
+        method:'POST',
+        body: JSON.stringify(this.patient),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      })
+      .then( response => response.json() )
+      .then( json => { waitingApp.patients = json})
+      .catch( err => {
+        console.error('WORK TRIAGE ERROR:');
+        console.error(err);
+      })
+
+      this.handleReset();
+>>>>>>> upstream/red-10-14
     },
     handleReset() {
       this.patient = {

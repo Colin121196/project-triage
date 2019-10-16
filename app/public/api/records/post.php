@@ -1,6 +1,7 @@
 <?php
 use Ramsey\Uuid\Uuid;
 
+<<<<<<< HEAD
 // Step 0: Validate Data
 
 // Step 1: Get a database connection from our help class
@@ -28,3 +29,30 @@ $stmt = execute([
 // Step 4: Output
 header('HTTP/1.1 303 See Other'); //The 303 status code means redirect/send somewhere else with a GET.
 header('Location: ../records/?guid='.$guid);  //Here is where you need to go. Get me 1 of the records, not all of the records
+=======
+// Step 0: Validate data
+
+// Step 1: Get a datase connection from our help class
+$db = DbConnection::getConnection();
+
+// Step 2: Prepare & run the query
+$stmt = $db->prepare(
+  'INSERT INTO Patient
+    (patientGuid, firstName, lastName, dob, sexAtBirth)
+  VALUES (?,?,?,?,?)'
+);
+
+$guid = Uuid::uuid4()->toString();
+
+$stmt->execute([
+  $guid, // i.e. 25769c6c-d34d-4bfe-ba98-e0ee856f3e7a
+  $_POST['firstName'],
+  $_POST['lastName'],
+  $_POST['dob'],
+  $_POST['sexAtBirth'],
+]);
+
+// Step 4: Output
+header('HTTP/1.1 303 See Other');
+header('Location: ../records/?guid='.$guid);
+>>>>>>> upstream/red-10-14
